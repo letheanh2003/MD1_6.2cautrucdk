@@ -3,33 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <style>
+    table {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
 </head>
 <body>
-<p>
-  Chiều Cao <input id="a" type="text">
-</p>
-<p>
-  Cân Nặng <input id="b" type="text">
-</p>
-<button type="button"onclick="total()">Tính</button>
-<p id="ketqua">
-  Kết quả
-</p>
+<div>
+  <table border="1" style="width: 500px">
+    <tr>
+      <td style="text-align: center" colspan="4"><input style="width: 450px" id="calculator" type="text"></td>
+    </tr>
+    <tr>
+      <td><button onclick="inputCalculator('1')">1</button></td>
+      <td><button onclick="inputCalculator('2')">2</button></td>
+      <td><button onclick="inputCalculator('3')">3</button></td>
+      <td><button onclick="inputCalculator('+')">+</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="inputCalculator('4')">4</button></td>
+      <td><button onclick="inputCalculator('5')">5</button></td>
+      <td><button onclick="inputCalculator('6')">6</button></td>
+      <td><button onclick="inputCalculator('-')">-</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="inputCalculator('7')">7</button></td>
+      <td><button onclick="inputCalculator('8')">8</button></td>
+      <td><button onclick="inputCalculator('9')">9</button></td>
+      <td><button onclick="inputCalculator(0)">0</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="result()">=</button></td>
+      <td><button onclick="clearCalculator()">C</button></td>
+      <td><button onclick="inputCalculator('/')">/</button></td>
+      <td><button onclick="inputCalculator('*')">*</button></td>
+    </tr>
+    <tr>
+      <td><button onclick="canBac2()">&radic;</button></td>
+    </tr>
+  </table>
+</div>
 <script>
-  function total(){
-    let a = +document.getElementById('a').value
-    let b = +document.getElementById('b').value
-    let bmi = b/(a*a)
-    if (bmi<18)
-      document.getElementById('ketqua').innerHTML = ('thieu can')
-    else if (bmi < 25.0)
-      document.getElementById('ketqua').innerHTML = ('binhthuong')
-    else if (bmi < 30.0)
-      document.getElementById('ketqua').innerHTML = ('thuacan')
-    else
-      document.getElementById('ketqua').innerHTML = ('beo phi')
-
+  function inputCalculator(input) {
+    document.getElementById('calculator').value += input
+    console.log('input----->',document.getElementById('calculator').value)
   }
+  function result(){
+    let input = document.getElementById('calculator').value;
+    let result = eval(input);
+    document.getElementById('calculator').value = result;
+  }
+  function clearCalculator() {
+    document.getElementById('calculator').value = '';
+  }
+  function canBac2() {
+    let input = document.getElementById('calculator').value;
+    let ketQua = Math.sqrt(input)
+    document.getElementById('calculator').value = ketQua
+  }
+  console.log('evalll --->', eval('4'+'5'))
 </script>
 </body>
 </html>
